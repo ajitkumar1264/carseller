@@ -58,7 +58,7 @@ function Gallery() {
               <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-0">
                  <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
                    <h2 className=" md:w-96 text-gray-900 text-left dark:text-white text-2xl font-extrabold mb-2">
-                     {currentCar[0].registration_year} {currentCar[0].CarName}
+                     {currentCar[0].registration_year} {currentCar[0].CarName} {currentCar[0].CarModel}
                    </h2>
                    <h2 className="text-gray-900 text-left dark:text-white  text-24 font-bold mb-2">
                    {currentCar[0].km_driven}km · {currentCar[0].fuel_type} · {currentCar[0].transmission}

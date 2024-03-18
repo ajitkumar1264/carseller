@@ -1,9 +1,16 @@
 import React,{useState} from "react";
+import { useDispatch } from "react-redux";
+import { AddCarData, AddImage } from "../Slices/Carslice";
+import { useNavigate } from "react-router-dom";
 
 function NewCaradd() {
 
 
   const [NewCardata, setNewCardata] = useState({});
+  const [CarImage, setCarImage] = useState(null);
+  const [idx, setidx] = useState(10);
+  const nav=useNavigate();
+  const dispatch=useDispatch();
 
   const handleOnchange=(e)=>{
     e.preventDefault();
@@ -11,9 +18,16 @@ function NewCaradd() {
   }
 
 
-  const handleOnsubmit=()=>{
-    console.log(NewCaradd)
+  const handleOnsubmit=(e)=>{
+    e.preventDefault();
+    setidx(idx+1);
+    let alldata={...NewCardata,id:idx};
+   
+    dispatch(AddCarData(alldata))
+    nav("/");
+
   }
+
 
   return (
     <section className="bg-white dark:bg-gray-900">
@@ -72,7 +86,7 @@ function NewCaradd() {
                 <input
                   type="text"
                   id="password"
-                  name="mobileno"
+                  name="contactno"
                   onChange={handleOnchange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
@@ -92,15 +106,46 @@ function NewCaradd() {
                   htmlFor="email"
                   className="block mb-2 text-left text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Registration Year
+                CarName
                 </label>
                 <input
                   type="text"
                   id="email"
-                  name="Ryear"
+                  name="CarName"
                   onChange={handleOnchange}
                   className="bg-gray-50 border border-gray-300 text-gray-900  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="name@flowbite.com"
+                  required
+                />
+              </div>
+              <div className="mb-5">
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-left text-sm font-medium text-gray-900 dark:text-white"
+                >
+                CarModel
+                </label>
+                <input
+                  type="text"
+                  id="email"
+                  name="CarModel"
+                  onChange={handleOnchange}
+                  className="bg-gray-50 border border-gray-300 text-gray-900  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required
+                />
+              </div>
+              <div className="mb-5">
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-left text-sm font-medium text-gray-900 dark:text-white"
+                >
+                Registration Year
+                </label>
+                <input
+                  type="number"
+                  id="email"
+                  name="registration_year"
+                  onChange={handleOnchange}
+                  className="bg-gray-50 border border-gray-300 text-gray-900  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 />
               </div>
@@ -113,15 +158,15 @@ function NewCaradd() {
                 </label>
                 <select
                   id="countries"
-                  name="country"
+                  name="fuel_type"
                   onChange={handleOnchange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
-                  <option selected>Choose a country</option>
-                  <option value="US">United States</option>
-                  <option value="CA">Canada</option>
-                  <option value="FR">France</option>
-                  <option value="DE">Germany</option>
+                  <option defaultChecked>Choose a country</option>
+               
+                  <option value="Petrol">Petrol</option>
+                  <option value="Diesel">Diesel</option>
+                  
                 </select>
               </div>
               <div className="mb-5">
@@ -132,9 +177,9 @@ function NewCaradd() {
                   Km driven
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   id="password"
-                  name="Kmdriven"
+                  name="km_driven"
                   onChange={handleOnchange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
@@ -146,19 +191,39 @@ function NewCaradd() {
                   htmlFor="password"
                   className="block mb-2 text-left text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Fuel Type
+                transmission
                 </label>
                 <select
                   id="countries"
-                  name="typecar"
+                  name="transmission"
                   onChange={handleOnchange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
-                  <option selected>Choose a country</option>
-                  <option value="US">United States</option>
-                  <option value="CA">Canada</option>
-                  <option value="FR">France</option>
-                  <option value="DE">Germany</option>
+                  <option selected>Choose a transmission</option>
+            
+                  <option value="Automatic">Automatic</option>
+                  <option value="Manual">Manual</option>
+                </select>
+              </div>
+              <div className="mb-5">
+                <label
+                  htmlFor="password"
+                  className="block mb-2 text-left text-sm font-medium text-gray-900 dark:text-white"
+                >
+                Emission Standard
+                </label>
+                <select
+                  id="countries"
+                  name="emission_standard"
+                  onChange={handleOnchange}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option selected>Choose a transmission</option>
+            
+                  <option value="BS4">BS4</option>
+                  <option value="BS5">Bs5</option>
+                  <option value="BS6">Bs6</option>
+                  <option value="Electric">Electric</option>
                 </select>
               </div>
 
@@ -172,7 +237,7 @@ function NewCaradd() {
                 <input
                   type="text"
                   id="password"
-                  name="Owner"
+                  name="num_owners"
                   onChange={handleOnchange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
@@ -188,7 +253,7 @@ function NewCaradd() {
                 <input
                   type="text"
                   id="password"
-                  name="RTO"
+                  name="rto"
                   onChange={handleOnchange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
@@ -203,7 +268,7 @@ function NewCaradd() {
                 </label>
                 <input
                   type="text"
-                  name="CarLocation"
+                  name="car_location"
                   onChange={handleOnchange}
                   id="password"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -220,7 +285,7 @@ function NewCaradd() {
                 <input
                   type="text"
                   id="password"
-                  name="Price"
+                  name="CarPrice"
                   onChange={handleOnchange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
@@ -236,6 +301,7 @@ function NewCaradd() {
                 <input
                   className="block h-10 align-middle text-center w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   id="file_input"
+                  onChange={(e)=>setCarImage(e.target.files[0])}
                   type="file"
                 />
               </div>
@@ -243,7 +309,7 @@ function NewCaradd() {
 
             <button
               type="submit"
-              onSubmit={handleOnsubmit}
+              onClick={handleOnsubmit}
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Register

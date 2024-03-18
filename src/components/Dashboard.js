@@ -5,33 +5,43 @@ import { useDispatch, useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Stack from "@mui/material/Stack";
-import { Selectedcar, SetIntial } from "../Slices/Carslice";
+import { GetNewCars, Selectedcar, SetIntial } from "../Slices/Carslice";
 
 function Dashboard() {
   const selectedText = useSelector((state) => state.car.SelectedCar);
   const cardata = useSelector((state) => state.car.CarData);
+  const NewCars = useSelector((state) => state.car.NewCars);
+  const checklogin = useSelector((state) => state.user);
+  console.log(checklogin);
+  console.log(NewCars);
   const dispatch = useDispatch();
-  const nav=useNavigate();
+  const nav = useNavigate();
 
   console.log(cardata);
 
-  useEffect(()=>{
-    dispatch(SetIntial())
-  },[nav])
-
-  const options = cardata.map((x)=>x.CarName);
+  const options = cardata.map((x) => x.CarName);
 
   console.log(options);
 
   const [value, setValue] = React.useState("");
   const [inputValue, setInputValue] = React.useState("");
 
-  const HandleSelectCar=(value)=>{
-  
-      dispatch(Selectedcar(value))
-      nav("/view")
-  }
- 
+  const HandleSelectCar = (value) => {
+    dispatch(Selectedcar(value));
+    nav("/view");
+  };
+
+  useEffect(() => {
+    dispatch(GetNewCars());
+  }, []);
+
+  const HandleSell = () => {
+    if (checklogin.Islogin) {
+      nav("/add");
+    } else {
+      nav("/register");
+    }
+  };
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -60,52 +70,31 @@ function Dashboard() {
                 </label>
                 <Autocomplete
                   value={value}
-                  onChange={(e,newValue)=>HandleSelectCar(newValue)}
+                  onChange={(e, newValue) => HandleSelectCar(newValue)}
                   inputValue={inputValue}
                   onInputChange={(event, newInputValue) => {
                     setInputValue(newInputValue);
-                
                   }}
                   id="controllable-states-demo"
                   options={options}
-                 
                   renderInput={(params) => (
                     <TextField {...params} label="Controllable" />
                   )}
                 />
               </div>
-
-              <button
-                type="button"
-                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-              >
-                Ahmedabad
-              </button>
-              <button
-                type="button"
-                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-              >
-                Delhi
-              </button>
-              <button
-                type="button"
-                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-              >
-                Noida
-              </button>
-              <button
-                type="button"
-                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-              >
-                Rajkot
-              </button>
-              <button
-                type="button"
-                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-              >
-                Mumbai
-              </button>
             </form>
+
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+              Sell your car
+            </h2>
+
+            <button
+              type="button"
+              onClick={HandleSell}
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            >
+              sell
+            </button>
           </div>
         </div>
       </div>
@@ -139,130 +128,43 @@ function Dashboard() {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <a href="#">
-                      <img
-                        className="p-8 rounded-t-lg"
-                        src={car1}
-                        alt="product image"
-                      />
-                    </a>
-                    <div className="px-5 pb-5">
-                      <a href="#">
-                        <h5 className="text-xl text-left font-semibold tracking-tight text-gray-900 dark:text-white">
-                          ele.registration_year, ele.CarName
-                        </h5>
-                        <h3 className="text-24 text-left font-semibold tracking-tight text-gray-900 dark:text-white">
-                          ele.km_driven km . ele.fuel_type ele.transmission
-                        </h3>
-                      </a>
+                  {NewCars.length > 0 &&
+                    NewCars.map((ele, idx) => {
+                      return (
+                        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                          <a href="#">
+                            <img
+                              className="p-8 rounded-t-lg"
+                              src={car1}
+                              alt="product image"
+                            />
+                          </a>
+                          <div className="px-5 pb-5">
+                            <a href="#">
+                              <h5 className="text-xl text-left font-semibold tracking-tight text-gray-900 dark:text-white">
+                                {ele.registration_year}, {ele.CarName}
+                              </h5>
+                              <h3 className="text-24 text-left font-semibold tracking-tight text-gray-900 dark:text-white">
+                                {ele.km_driven} km . {ele.fuel_type}
+                                {ele.transmission}
+                              </h3>
+                            </a>
 
-                      <div className="flex mt-5 items-center justify-between">
-                        <span className="text-xl font-bold text-gray-900 dark:text-white">
-                          ele.CarPrice
-                        </span>
-                        <a
-                          href="#"
-                          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        >
-                          Add to cart
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <a href="#">
-                      <img
-                        className="p-8 rounded-t-lg"
-                        src={car1}
-                        alt="product image"
-                      />
-                    </a>
-                    <div className="px-5 pb-5">
-                      <a href="#">
-                        <h5 className="text-xl text-left font-semibold tracking-tight text-gray-900 dark:text-white">
-                          ele.registration_year, ele.CarName
-                        </h5>
-                        <h3 className="text-24 text-left font-semibold tracking-tight text-gray-900 dark:text-white">
-                          ele.km_driven km . ele.fuel_type ele.transmission
-                        </h3>
-                      </a>
-
-                      <div className="flex mt-5 items-center justify-between">
-                        <span className="text-xl font-bold text-gray-900 dark:text-white">
-                          ele.CarPrice
-                        </span>
-                        <a
-                          href="#"
-                          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        >
-                          Add to cart
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <a href="#">
-                      <img
-                        className="p-8 rounded-t-lg"
-                        src={car1}
-                        alt="product image"
-                      />
-                    </a>
-                    <div className="px-5 pb-5">
-                      <a href="#">
-                        <h5 className="text-xl text-left font-semibold tracking-tight text-gray-900 dark:text-white">
-                          ele.registration_year, ele.CarName
-                        </h5>
-                        <h3 className="text-24 text-left font-semibold tracking-tight text-gray-900 dark:text-white">
-                          ele.km_driven km . ele.fuel_type ele.transmission
-                        </h3>
-                      </a>
-
-                      <div className="flex mt-5 items-center justify-between">
-                        <span className="text-xl font-bold text-gray-900 dark:text-white">
-                          ele.CarPrice
-                        </span>
-                        <a
-                          href="#"
-                          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        >
-                          Add to cart
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <a href="#">
-                      <img
-                        className="p-8 rounded-t-lg"
-                        src={car1}
-                        alt="product image"
-                      />
-                    </a>
-                    <div className="px-5 pb-5">
-                      <a href="#">
-                        <h5 className="text-xl text-left font-semibold tracking-tight text-gray-900 dark:text-white">
-                          ele.registration_year, ele.CarName
-                        </h5>
-                        <h3 className="text-24 text-left font-semibold tracking-tight text-gray-900 dark:text-white">
-                          ele.km_driven km . ele.fuel_type ele.transmission
-                        </h3>
-                      </a>
-
-                      <div className="flex mt-5 items-center justify-between">
-                        <span className="text-xl font-bold text-gray-900 dark:text-white">
-                          ele.CarPrice
-                        </span>
-                        <a
-                          href="#"
-                          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        >
-                          Add to cart
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+                            <div className="flex mt-5 items-center justify-between">
+                              <span className="text-xl font-bold text-gray-900 dark:text-white">
+                                {ele.CarPrice}
+                              </span>
+                              <Link
+                                to={`/car/${ele.id}`}
+                                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                              >
+                                View
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
             </div>
@@ -272,7 +174,5 @@ function Dashboard() {
     </section>
   );
 }
-
-
 
 export default Dashboard;
