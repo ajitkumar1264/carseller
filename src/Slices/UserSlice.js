@@ -4,6 +4,7 @@ const initialState={
 
     Islogin:false,
     RegisterUser:{},
+    orders:[],
 }
 
 const userSlice=createSlice({
@@ -20,9 +21,17 @@ const userSlice=createSlice({
         LogOut:(state,action)=>{
             state.Islogin=false;
             state.RegisterUser={};
+        },
+        Order:(state,action)=>{
+            state.orders.push(action.payload);
+        },
+        RemoveOrder:(state,action)=>{
+            let order=state.orders.filter((x)=>x.id!==action.payload);
+            state.orders=order;
+
         }
     }
 })
 
-export const {RegisterUser,LoginUser,LogOut}=userSlice.actions;
+export const {RegisterUser,LoginUser,LogOut,Order,RemoveOrder}=userSlice.actions;
 export default userSlice.reducer;

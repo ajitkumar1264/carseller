@@ -11,6 +11,8 @@ import SignIn from './components/SignIn';
 import Register from './components/Register';
 import NewCaradd from './components/NewCaradd';
 import Carsview from './components/Carsview';
+import { Order } from './Slices/UserSlice';
+import Orders from './components/Orders';
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
     <Route path='/car/:id' element={<Gallery/>} />
     <Route path='/add' element={<NewCaradd/>} />
     <Route path='/View' element={<Carsview/>} />
+    <Route path='/order' element={<Orders/>} />
 
     </Routes>
     
