@@ -29,7 +29,9 @@ Our Project is dedicated to providing comprehensive, accurate information about 
 ## Tech Stack
 
 **Client:** FuseReact, Redux, TailwindCSS
+
 **Server:** Node, Express, socket, Redis
+
 **Database** : MongoDB
 
 
