@@ -50,10 +50,15 @@ Our Project is dedicated to providing comprehensive, accurate information about 
 
 ## Project Scope
 
-This project aims to streamline the process of identifying, selecting, and ordering genuine OEM parts for vehicles by leveraging the precision of VINs.
+- Comprehensive Coverage: Our catalog will cover a wide range of vehicle parts, ensuring that users can find information on components for both modern models and classic cars.
 
-To provide a user-friendly and responsive platform with data visualization of car parts and assemblies for car owners/ warehouse owners.
+- Detailed Information: We will provide detailed specifications, descriptions, and compatibility information for each part, empowering car owners and enthusiasts to make informed decisions about maintenance and repairs.
 
+- Empowering Users: By offering comprehensive information, we aim to empower car owners and enthusiasts, enabling them to better understand their vehicles and make confident decisions regarding maintenance, repairs, and upgrades.
+
+- User-Friendly Interface: The platform will feature a user-friendly interface that facilitates easy navigation and quick access to the desired information.
+
+- Accuracy and Reliability: We are committed to maintaining a high standard of accuracy and reliability in the information provided, ensuring that users can trust the data presented in our catalog.
 
 
 ## Features
