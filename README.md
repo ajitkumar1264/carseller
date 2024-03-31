@@ -30,6 +30,33 @@
 
 Our Project is dedicated to providing comprehensive, accurate information about various car parts. From engines to exhausts, from brakes to batteries, we cover it all. Our extensive database includes details about parts for a wide range of vehicles, from the latest models to classic cars. We aim to empower car owners and enthusiasts by providing them with the knowledge they need to understand their vehicles better and make informed decisions about maintenance and repairs. We believe that a well-informed car owner is a safer, happier, and more satisfied car owner.
 
+ 
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#project-scope">Project Scope</a>
+      <ul>
+        <li><a href="#user-registration">User Registration</a></li>
+        <li><a href="#dashboard-view">Dashboard View</a></li>
+        <li><a href="#admin-dashboard">Admin Dashboard</a></li>
+      </ul>
+    </li>
+    <li><a href="#tech-stack">Tech Stack</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#plugins">Plugins</a></li>
+    <li><a href="#license">License</a></li>
+  </ol>
+</details>
+
+
+## Project Scope
+
+This project aims to streamline the process of identifying, selecting, and ordering genuine OEM parts for vehicles by leveraging the precision of VINs.
+
+To provide a user-friendly and responsive platform with data visualization of car parts and assemblies for car owners/ warehouse owners.
+
+
 
 ## Features
 
