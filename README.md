@@ -53,7 +53,7 @@ Our Project is dedicated to providing comprehensive, accurate information about 
 
 ## Installation
 
-Dillinger requires [Fuse React](https://fusetheme.com/) v8+ to run.
+OEM requires [Fuse React](https://fusetheme.com/) v8+ to run.
 
 Install the dependencies and devDependencies and start the server.
 
@@ -63,7 +63,7 @@ npm i
 npm start
 ```
 
-Dillinger requires [Node.js](https://nodejs.org/) v16+ to run.
+OEM requires [Node.js](https://nodejs.org/) v16+ to run.
 
 Install the dependencies and devDependencies and start the server.
 
@@ -82,7 +82,7 @@ NODE_ENV=production node app
 
 ## Plugins
 
-Dillinger is currently extended with the following plugins.
+OEM is currently extended with the following plugins.
 Instructions on how to use them in your own application are linked below.
 
 | Plugin | README |
