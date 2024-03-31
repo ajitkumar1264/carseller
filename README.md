@@ -33,11 +33,42 @@ Our Project is dedicated to providing comprehensive, accurate information about 
 
 ## Features
 
-- Realtime Data Serve
-- user gets information about his/her car within a few seconds
-- Realtime broadcast info by admin
-- User Notification
-- Last 50 Search History
+#### User Registration
+
+
+- User Registration
+- Email Authentication
+- Login
+
+<p align="center">
+  <img src="https://github.com/ajitkumar1264/carseller/blob/main/src/assets/logo-removebg-preview.png">
+</p>
+
+
+#### Dashboard View
+
+- Search VIN Number
+- Search and view specific Category
+- Search and view specific Assembly
+- Search and view specific parts
+- Image Hotspot
+- View and Update Profile
+
+
+
+<p align="center">
+  <img src="https://github.com/ajitkumar1264/carseller/blob/main/src/assets/logo-removebg-preview.png">
+</p>
+
+#### Admin Dashboard
+
+- User management
+- User VIN Number History
+
+<p align="center">
+  <img src="https://github.com/ajitkumar1264/carseller/blob/main/src/assets/logo-removebg-preview.png">
+</p>
+
 
 
 
@@ -53,9 +84,11 @@ Our Project is dedicated to providing comprehensive, accurate information about 
 
 ## Installation
 
+Clone the repository: `git clone https://github.com/your-repo-link.git`
+ 
 OEM requires [Fuse React](https://fusetheme.com/) v8+ to run.
 
-Install the dependencies and devDependencies and start the server.
+Install the dependencies and devDependencies and start the Frontend.
 
 ```sh
 cd frontend
@@ -73,12 +106,7 @@ npm i
 npm run dev
 ```
 
-For production environments...
-
-```sh
-npm install --production
-NODE_ENV=production node app
-```
+Make sure to set up the required environment variables in the `.env` file before running the application.
 
 ## Plugins
 
