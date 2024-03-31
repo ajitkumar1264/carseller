@@ -33,11 +33,11 @@ Our Project is dedicated to providing comprehensive, accurate information about 
 
 ## Features
 
-- Realtime Data Server
-- user get information about his/her car within few seconds
-- Realtime brodcast info by admin
-- User Notfication
-- Last 50 Search history
+- Realtime Data Serve
+- user gets information about his/her car within a few seconds
+- Realtime broadcast info by admin
+- User Notification
+- Last 50 Search History
 
 
 
