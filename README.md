@@ -1,6 +1,7 @@
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
-
+<p align="center">
+  <img src="https://github.com/ajitkumar1264/carseller/blob/main/src/assets/logo-removebg-preview.png">
+</p>
 <p align="center">
   <img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white">
   &nbsp;
